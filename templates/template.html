@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+   <meta charset="utf-8">
+   <title>Flask Parent Template</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ </head>
+ <body>
+    <header>
+      <div class="panel panel-heading">
+        <h1 class="logo w3-container">First Web App</h1>
+        <strong><nav class="navbar navbar-default">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+        </nav></strong>
+      </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+ </body>
+</html>
