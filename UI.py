@@ -1,16 +1,21 @@
-import tkinter as tk
+from flask import Flask, redirect, url_for, request
+app = Flask(__name__)
 
-# Create the main window
-window = tk.Tk()
-window.title("My GUI")
 
-# Add a label
-label = tk.Label(window, text="Hello, World!")
-label.pack()
+@app.route('/success/<name>')
+def success(name):
+    return 'welcome %s' % name
 
-# Add a button
-button = tk.Button(window, text="Click me!", command=lambda: print("Button clicked!"))
-button.pack()
 
-# Start the event loop
-window.mainloop()
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        user = request.form['nm']
+        return redirect(url_for('success', name=user))
+    else:
+        user = request.args.get('nm')
+        return redirect(url_for('success', name=user))
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
